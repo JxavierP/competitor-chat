@@ -1,6 +1,7 @@
-package components
+package templates
 
 templ Index() {
+    @layout("Home") {
     <div>
       <h1>Welcome</h1>
       <button hx-get="/message" hx-target="#message" hx-swap="innerHTML">
@@ -8,5 +9,6 @@ templ Index() {
       </button>
       <div id="message"></div>
     </div>
+    }
 }
 

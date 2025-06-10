@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/JxavierP/competitor-chat/components"
+	"github.com/JxavierP/competitor-chat/templates"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
@@ -14,7 +14,7 @@ func main() {
 	router.HTMLRender = &TemplRender{}
 
 	router.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:3001", "https://hoppscotch.io"},
+		AllowOrigins:     []string{"http://localhost:8080", "https://hoppscotch.io"},
 		AllowMethods:     []string{"GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"},
 		AllowHeaders:     []string{"Origin", "Content-Type", "Accept"},
 		ExposeHeaders:    []string{"Content-Length"},
@@ -27,7 +27,7 @@ func main() {
 	router.GET("/", func(c *gin.Context) {
 		c.Render(http.StatusOK, &TemplRender{
 			http.StatusOK,
-			components.Index(),
+			templates.Index(),
 		})
 	})
 
