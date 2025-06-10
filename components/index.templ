@@ -1,0 +1,12 @@
+package components
+
+templ Index() {
+    <div>
+      <h1>Welcome</h1>
+      <button hx-get="/message" hx-target="#message" hx-swap="innerHTML">
+        Load Message
+      </button>
+      <div id="message"></div>
+    </div>
+}
+

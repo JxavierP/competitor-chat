@@ -1,0 +1,14 @@
+package components
+
+templ layout(title string) {
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>{title}</title>
+      <script src="/static/htmx.min.js"></script>
+    </head>
+    <body>
+	{children...}
+    </body>
+  </html>
+}
