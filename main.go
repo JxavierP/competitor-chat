@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/JxavierP/competitor-chat/templates"
+	"github.com/JxavierP/competitor-chat/web/pages"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
@@ -27,7 +27,7 @@ func main() {
 	router.GET("/", func(c *gin.Context) {
 		c.Render(http.StatusOK, &TemplRender{
 			http.StatusOK,
-			templates.Index(),
+			pages.Index(),
 		})
 	})
 
