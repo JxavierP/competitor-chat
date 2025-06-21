@@ -1,0 +1,21 @@
+package components
+
+templ ChatInput() {
+	<div class="flex w-full px-52">
+		<fieldset class="w-full mb-4 bg-[#26233a] border border-[#524f67] justify-self-end rounded-md p-4">
+			<textarea
+				data-bind-prompt
+				placeholder="How can I help you today?"
+				rows="3"
+				class="bg-[#26233a] text-white w-full font-semibold outline-none resize-none"
+			></textarea>
+			<div class="flex justify-between items-center">
+				<span class="text-gray-400">0 / 500</span>
+				<button
+					data-class-active="$prompt != ''"
+					data-on-click="@post('/endpoint')"
+				>Save</button>
+			</div>
+		</fieldset>
+	</div>
+}

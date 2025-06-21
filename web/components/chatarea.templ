@@ -1,0 +1,40 @@
+package components
+
+templ ChatMessage(role string, content string) {
+  if role == "user" {
+    <div class="flex justify-end my-10">
+      <div class="bg-rose-pine-highlight-med text-white p-3 rounded-lg max-w-xs">
+        { content }
+      </div>
+    </div>
+  } else if role == "assistant" {
+    <div class="flex justify-start my-10">
+      <div class="text-rose-pine-text py-3 rounded-lg max-w-full">
+        { content }
+      </div>
+    </div>
+  }
+}
+
+templ ChatArea() {
+	<div class="flex flex-col w-full h-full grow px-52 overflow-y-auto">
+		<div id="messages" class="w-full text-[#f6f6f6]">
+      @ChatMessage("user", "Can you tell me about the weather?")
+      @ChatMessage("assistant", "Sure! The weather today is sunny with a high of 75°F.")
+      @ChatMessage("user", "Thanks! That's helpful.")
+      @ChatMessage("assistant", "You're welcome! If you have any more questions, feel free to ask.")
+      @ChatMessage("user", "What about tomorrow's forecast?")
+      @ChatMessage("assistant", "Tomorrow's forecast is partly cloudy with a chance of rain in the afternoon.")
+      @ChatMessage("user", "Got it, thanks again!")
+      @ChatMessage("assistant", "No problem! I'm here to help.")
+      @ChatMessage("user", "Can you tell me about the weather?")
+      @ChatMessage("assistant", "Sure! The weather today is sunny with a high of 75°F.")
+      @ChatMessage("user", "Thanks! That's helpful.")
+      @ChatMessage("assistant", "You're welcome! If you have any more questions, feel free to ask.")
+      @ChatMessage("user", "What about tomorrow's forecast?")
+      @ChatMessage("assistant", "Tomorrow's forecast is partly cloudy with a chance of rain in the afternoon.")
+      @ChatMessage("user", "Got it, thanks again!")
+      @ChatMessage("assistant", "No problem! I'm here to help.")
+		</div>
+	</div>
+}
