@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
     --color-rose-pine-base: hsl(249deg, 22%, 12%);

@@ -29,7 +29,7 @@ func Sidebar() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"flex flex-col w-64 p-4 shrink-0 border-r border-[#524f67]\"><h2 class=\"text-xl font-semibold mb-4\">Competitor.Chat</h2><ul><li class=\"mb-2\"><a href=\"/home\" class=\"text-blue-400 hover:underline\">Home</a></li><li class=\"mb-2\"><a href=\"/about\" class=\"text-blue-400 hover:underline\">About</a></li><li class=\"mb-2\"><a href=\"/contact\" class=\"text-blue-400 hover:underline\">Contact</a></li></ul></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"flex flex-col w-64 px-4 pt-5 shrink-0 border-r border-[#524f67]\"><h2 class=\"w-full text-center text-xl font-semibold mb-4\">Competitor.Chat</h2></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

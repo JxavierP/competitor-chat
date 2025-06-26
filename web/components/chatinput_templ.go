@@ -29,7 +29,7 @@ func ChatInput() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"flex w-full px-52\"><fieldset class=\"w-full mb-4 bg-[#26233a] border border-[#524f67] justify-self-end rounded-md p-4\"><textarea data-bind-prompt placeholder=\"How can I help you today?\" rows=\"3\" class=\"bg-[#26233a] text-white w-full font-semibold outline-none resize-none\"></textarea><div class=\"flex justify-between items-center\"><span class=\"text-gray-400\">0 / 500</span> <button data-class-active=\"$prompt != ''\" data-on-click=\"@post('/endpoint')\">Save</button></div></fieldset></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"flex w-full px-52\"><fieldset class=\"w-full mb-4 bg-[#26233a] border border-[#524f67] justify-self-end rounded-md p-4\"><textarea data-bind-prompt placeholder=\"How can I help you today?\" rows=\"3\" class=\"bg-[#26233a] text-white w-full font-semibold outline-none resize-none\" data-on-keydown=\"evt.key === 'Enter' && (evt.preventDefault(), $prompt != '' ?\n        @post('/chat') : null)\"></textarea><div class=\"flex justify-between items-center\"><span class=\"text-gray-400\">0 / 500</span> <button data-class-active=\"$prompt != ''\" data-on-click=\"@post('/chat')\">Prompt</button></div></fieldset></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
