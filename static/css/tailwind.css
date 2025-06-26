@@ -19,3 +19,29 @@
     --color-rose-pine-highlight-med: hsl(249deg, 15%, 28%);
     --color-rose-pine-highlight-high: hsl(248deg, 13%, 36%);
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #1f1d2e;
+  border-radius: 8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+/*  padding-right: 4px;*/
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #6e6a86;
+  border-radius: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #908caa;
+}
