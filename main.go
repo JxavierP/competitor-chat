@@ -2,21 +2,33 @@ package main
 
 import (
 	"context"
+	"log"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/JxavierP/competitor-chat/internal/handlers"
 	"github.com/JxavierP/competitor-chat/web/pages"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 	"google.golang.org/genai"
 )
+
+func init() {
+
+    err := godotenv.Load(".env")
+
+    if err != nil {
+        log.Fatal("Error loading .env file")
+    }
+}
 
 func main() {
 	router := gin.Default()
 	router.HTMLRender = &TemplRender{}
 	gemini, err := genai.NewClient(context.Background(), &genai.ClientConfig{
-		APIKey: "AIzaSyDIggMrw4BOpML-6KOyrsl6ONVotE397WM",
+		APIKey: os.Getenv("GEMINI_API_KEY"),
 		Backend: genai.BackendGeminiAPI,
 	})
 	if err != nil {
