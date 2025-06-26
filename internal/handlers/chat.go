@@ -1,17 +1,20 @@
 package handlers
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
 
 	"bytes"
+
 	"github.com/JxavierP/competitor-chat/internal/models"
 	"github.com/JxavierP/competitor-chat/web/components"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	datastar "github.com/starfederation/datastar/sdk/go"
 	"github.com/yuin/goldmark"
+	"github.com/yuin/goldmark/extension"
 	"google.golang.org/genai"
 )
 
@@ -38,6 +41,30 @@ func PromptHandler(c *gin.Context) {
 
 func ResponseHandler(gemini *genai.Client) gin.HandlerFunc {
 	return func(c *gin.Context) {
+		// Extract JSON string from the 'datastar' query param
+		jsonPayload := c.Query("datastar")
+		if jsonPayload == "" {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Missing datastar payload"})
+			return
+		}
+
+		// Parse it into a map
+		var data map[string]string
+		if err := json.Unmarshal([]byte(jsonPayload), &data); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid datastar JSON"})
+			return
+		}
+
+		// Extract the prompt from the parsed map
+		prompt := data["prompt"]
+		if prompt == "" {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Prompt is required"})
+			return
+		}
+		if prompt == "" {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Prompt is required"})
+			return
+		}
 		sse := datastar.NewSSE(c.Writer, c.Request)
 		id := uuid.New().String()
 
@@ -51,7 +78,7 @@ func ResponseHandler(gemini *genai.Client) gin.HandlerFunc {
 		flush.Flush()
 
 		contents := []*genai.Content{
-			genai.NewContentFromText("Send a response that uses all the features of markdown", "user"),
+			genai.NewContentFromText(prompt, "user"),
 		}
 
 		int32ThinkingBudget := int32(0) // Set to 0 to disable thinking
@@ -73,8 +100,14 @@ func ResponseHandler(gemini *genai.Client) gin.HandlerFunc {
 			chunk := response.Candidates[0].Content.Parts[0].Text
 			fullResponse += chunk
 
+			var md = goldmark.New(
+				goldmark.WithExtensions(
+					extension.GFM,
+				),
+			)
+
 			var buf bytes.Buffer
-			if err := goldmark.Convert([]byte(fullResponse), &buf); err != nil {
+			if err := md.Convert([]byte(fullResponse), &buf); err != nil {
 				log.Println("markdown render error:", err)
 				continue
 			}

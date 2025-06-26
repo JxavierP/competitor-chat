@@ -7,6 +7,10 @@
     'Noto Color Emoji';
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
     monospace;
+    --color-pink-100: oklch(94.8% 0.028 342.258);
+    --color-pink-300: oklch(82.3% 0.12 346.018);
+    --color-pink-700: oklch(52.5% 0.223 3.958);
+    --color-pink-900: oklch(40.8% 0.153 2.432);
     --color-gray-400: oklch(70.7% 0.022 261.325);
     --color-white: #fff;
     --spacing: 0.25rem;
@@ -23,6 +27,7 @@
     --color-rose-pine-base: hsl(249deg, 22%, 12%);
     --color-rose-pine-surface: hsl(247deg, 23%, 15%);
     --color-rose-pine-text: hsl(245deg, 50%, 91%);
+    --color-rose-pine-love: hsl(343deg, 76%, 68%);
     --color-rose-pine-highlight-med: hsl(249deg, 15%, 28%);
   }
 }
@@ -855,20 +860,11 @@
   .max-w-xs {
     max-width: var(--container-xs);
   }
-  .flex-shrink {
-    flex-shrink: 1;
-  }
   .shrink-0 {
     flex-shrink: 0;
   }
-  .flex-grow {
-    flex-grow: 1;
-  }
   .grow {
     flex-grow: 1;
-  }
-  .border-collapse {
-    border-collapse: collapse;
   }
   .transform {
     transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
@@ -975,93 +971,28 @@
   .text-white {
     color: var(--color-white);
   }
-  .underline {
-    text-decoration-line: underline;
-  }
-  .outline {
-    outline-style: var(--tw-outline-style);
-    outline-width: 1px;
-  }
   .transition {
     transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, visibility, content-visibility, overlay, pointer-events;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
-  .prose-stone {
-    --tw-prose-body: oklch(37.4% 0.01 67.558);
-    --tw-prose-headings: oklch(21.6% 0.006 56.043);
-    --tw-prose-lead: oklch(44.4% 0.011 73.639);
-    --tw-prose-links: oklch(21.6% 0.006 56.043);
-    --tw-prose-bold: oklch(21.6% 0.006 56.043);
-    --tw-prose-counters: oklch(55.3% 0.013 58.071);
-    --tw-prose-bullets: oklch(86.9% 0.005 56.366);
-    --tw-prose-hr: oklch(92.3% 0.003 48.717);
-    --tw-prose-quotes: oklch(21.6% 0.006 56.043);
-    --tw-prose-quote-borders: oklch(92.3% 0.003 48.717);
-    --tw-prose-captions: oklch(55.3% 0.013 58.071);
-    --tw-prose-kbd: oklch(21.6% 0.006 56.043);
-    --tw-prose-kbd-shadows: NaN NaN NaN;
-    --tw-prose-code: oklch(21.6% 0.006 56.043);
-    --tw-prose-pre-code: oklch(92.3% 0.003 48.717);
-    --tw-prose-pre-bg: oklch(26.8% 0.007 34.298);
-    --tw-prose-th-borders: oklch(86.9% 0.005 56.366);
-    --tw-prose-td-borders: oklch(92.3% 0.003 48.717);
-    --tw-prose-invert-body: oklch(86.9% 0.005 56.366);
-    --tw-prose-invert-headings: #fff;
-    --tw-prose-invert-lead: oklch(70.9% 0.01 56.259);
-    --tw-prose-invert-links: #fff;
-    --tw-prose-invert-bold: #fff;
-    --tw-prose-invert-counters: oklch(70.9% 0.01 56.259);
-    --tw-prose-invert-bullets: oklch(44.4% 0.011 73.639);
-    --tw-prose-invert-hr: oklch(37.4% 0.01 67.558);
-    --tw-prose-invert-quotes: oklch(97% 0.001 106.424);
-    --tw-prose-invert-quote-borders: oklch(37.4% 0.01 67.558);
-    --tw-prose-invert-captions: oklch(70.9% 0.01 56.259);
-    --tw-prose-invert-kbd: #fff;
-    --tw-prose-invert-kbd-shadows: 255 255 255;
-    --tw-prose-invert-code: #fff;
-    --tw-prose-invert-pre-code: oklch(86.9% 0.005 56.366);
-    --tw-prose-invert-pre-bg: rgb(0 0 0 / 50%);
-    --tw-prose-invert-th-borders: oklch(44.4% 0.011 73.639);
-    --tw-prose-invert-td-borders: oklch(37.4% 0.01 67.558);
-  }
-  .prose-zinc {
-    --tw-prose-body: oklch(37% 0.013 285.805);
-    --tw-prose-headings: oklch(21% 0.006 285.885);
-    --tw-prose-lead: oklch(44.2% 0.017 285.786);
-    --tw-prose-links: oklch(21% 0.006 285.885);
-    --tw-prose-bold: oklch(21% 0.006 285.885);
-    --tw-prose-counters: oklch(55.2% 0.016 285.938);
-    --tw-prose-bullets: oklch(87.1% 0.006 286.286);
-    --tw-prose-hr: oklch(92% 0.004 286.32);
-    --tw-prose-quotes: oklch(21% 0.006 285.885);
-    --tw-prose-quote-borders: oklch(92% 0.004 286.32);
-    --tw-prose-captions: oklch(55.2% 0.016 285.938);
-    --tw-prose-kbd: oklch(21% 0.006 285.885);
-    --tw-prose-kbd-shadows: NaN NaN NaN;
-    --tw-prose-code: oklch(21% 0.006 285.885);
-    --tw-prose-pre-code: oklch(92% 0.004 286.32);
-    --tw-prose-pre-bg: oklch(27.4% 0.006 286.033);
-    --tw-prose-th-borders: oklch(87.1% 0.006 286.286);
-    --tw-prose-td-borders: oklch(92% 0.004 286.32);
-    --tw-prose-invert-body: oklch(87.1% 0.006 286.286);
-    --tw-prose-invert-headings: #fff;
-    --tw-prose-invert-lead: oklch(70.5% 0.015 286.067);
-    --tw-prose-invert-links: #fff;
-    --tw-prose-invert-bold: #fff;
-    --tw-prose-invert-counters: oklch(70.5% 0.015 286.067);
-    --tw-prose-invert-bullets: oklch(44.2% 0.017 285.786);
-    --tw-prose-invert-hr: oklch(37% 0.013 285.805);
-    --tw-prose-invert-quotes: oklch(96.7% 0.001 286.375);
-    --tw-prose-invert-quote-borders: oklch(37% 0.013 285.805);
-    --tw-prose-invert-captions: oklch(70.5% 0.015 286.067);
-    --tw-prose-invert-kbd: #fff;
-    --tw-prose-invert-kbd-shadows: 255 255 255;
-    --tw-prose-invert-code: #fff;
-    --tw-prose-invert-pre-code: oklch(87.1% 0.006 286.286);
-    --tw-prose-invert-pre-bg: rgb(0 0 0 / 50%);
-    --tw-prose-invert-th-borders: oklch(44.2% 0.017 285.786);
-    --tw-prose-invert-td-borders: oklch(37% 0.013 285.805);
+  .prose-pine {
+    --tw-prose-body: var(--color-rose-pine-text);
+    --tw-prose-headings: var(--color-rose-pine-text);
+    --tw-prose-lead: var(--color-rose-pine-text);
+    --tw-prose-links: var(--color-rose-pine-love);
+    --tw-prose-bold: var(--color-rose-pine-love);
+    --tw-prose-counters: var(--color-rose-pine-text);
+    --tw-prose-bullets: var(--color-rose-pine-text);
+    --tw-prose-hr: var(--color-rose-pine-text);
+    --tw-prose-quotes: var(--color-rose-pine-love);
+    --tw-prose-quote-borders: var(--color-rose-pine-highlight-med);
+    --tw-prose-captions: var(--color-rose-pine-text);
+    --tw-prose-code: var(--color-rose-pine-love);
+    --tw-prose-pre-code: var(--color-rose-pine-love);
+    --tw-prose-pre-bg: var(--color-rose-highlight-low);
+    --tw-prose-th-borders: var(--color-rose-highlight-high);
+    --tw-prose-td-borders: var(--color-rose-highlight-med);
   }
   .outline-none {
     --tw-outline-style: none;
@@ -1097,11 +1028,6 @@
   syntax: "*";
   inherits: false;
 }
-@property --tw-outline-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
-}
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
@@ -1112,7 +1038,6 @@
       --tw-skew-y: initial;
       --tw-border-style: solid;
       --tw-font-weight: initial;
-      --tw-outline-style: solid;
     }
   }
 }

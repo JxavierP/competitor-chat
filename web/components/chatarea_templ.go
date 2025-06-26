@@ -61,7 +61,7 @@ func ChatMessage(role string, content string, id string) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\" class=\"flex flex-col prose prose-white justify-self-start my-10 text-rose-pine-text rounded-lg max-w-full\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\" class=\"flex flex-col prose prose-pine justify-self-start my-10 text-rose-pine-text rounded-lg max-w-full\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

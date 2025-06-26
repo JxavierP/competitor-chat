@@ -6,7 +6,7 @@ templ ChatMessage(role string, content string, id string) {
 			{ content }
 		</div>
 	} else if role == "assistant" {
-		<div id={ id } class="flex flex-col prose prose-white justify-self-start my-10 text-rose-pine-text rounded-lg max-w-full">
+		<div id={ id } class="flex flex-col prose prose-pine justify-self-start my-10 text-rose-pine-text rounded-lg max-w-full">
 			@templ.Raw(content)
 		</div>
 	}
