@@ -843,8 +843,8 @@
   .table {
     display: table;
   }
-  .h-2 {
-    height: calc(var(--spacing) * 2);
+  .h-px {
+    height: 1px;
   }
   .h-screen {
     height: 100vh;
@@ -864,27 +864,14 @@
   .flex-1 {
     flex: 1;
   }
-  .flex-shrink {
-    flex-shrink: 1;
-  }
   .shrink-0 {
     flex-shrink: 0;
-  }
-  .flex-grow {
-    flex-grow: 1;
   }
   .grow {
     flex-grow: 1;
   }
-  .border-collapse {
-    border-collapse: collapse;
-  }
   .-translate-x-1 {
     --tw-translate-x: calc(var(--spacing) * -1);
-    translate: var(--tw-translate-x) var(--tw-translate-y);
-  }
-  .-translate-x-2 {
-    --tw-translate-x: calc(var(--spacing) * -2);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
   .transform {
@@ -986,13 +973,6 @@
   .text-white {
     color: var(--color-white);
   }
-  .underline {
-    text-decoration-line: underline;
-  }
-  .outline {
-    outline-style: var(--tw-outline-style);
-    outline-width: 1px;
-  }
   .transition {
     transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, visibility, content-visibility, overlay, pointer-events;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
@@ -1006,7 +986,7 @@
     --tw-prose-bold: var(--color-rose-pine-text);
     --tw-prose-counters: var(--color-rose-pine-text);
     --tw-prose-bullets: var(--color-rose-pine-text);
-    --tw-prose-hr: var(--color-rose-pine-text);
+    --tw-prose-hr: var(--color-rose-highlight-high);
     --tw-prose-quotes: var(--color-rose-pine-subtle);
     --tw-prose-quote-borders: var(--color-rose-pine-highlight-med);
     --tw-prose-captions: var(--color-rose-pine-text);
@@ -1019,6 +999,11 @@
   .outline-none {
     --tw-outline-style: none;
     outline-style: none;
+  }
+  .last\:min-h-\[calc\(100vh-12\.5rem\)\] {
+    &:last-child {
+      min-height: calc(100vh - 12.5rem);
+    }
   }
 }
 ::-webkit-scrollbar {
@@ -1082,11 +1067,6 @@
   syntax: "*";
   inherits: false;
 }
-@property --tw-outline-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
-}
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
@@ -1100,7 +1080,6 @@
       --tw-skew-y: initial;
       --tw-border-style: solid;
       --tw-font-weight: initial;
-      --tw-outline-style: solid;
     }
   }
 }

@@ -13,7 +13,7 @@ export const theme = {
           '--tw-prose-bold': 'var(--color-rose-pine-text)',
           '--tw-prose-counters': 'var(--color-rose-pine-text)',
           '--tw-prose-bullets': 'var(--color-rose-pine-text)',
-          '--tw-prose-hr': 'var(--color-rose-pine-text)',
+          '--tw-prose-hr': 'var(--color-rose-highlight-high)',
           '--tw-prose-quotes': 'var(--color-rose-pine-subtle)',
           '--tw-prose-quote-borders': 'var(--color-rose-pine-highlight-med)',
           '--tw-prose-captions': 'var(--color-rose-pine-text)',
