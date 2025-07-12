@@ -1,12 +1,14 @@
 package components
 
+import "github.com/starfederation/datastar/sdk/go"
+
 templ ChatMessage(role string, content string, id string) {
 	if role == "user" {
-		<div data-on-load="@get('/chat'), {openWhenHidden:true}" data-scroll-into-view__smooth__vstart class="flex justify-self-end my-10 bg-rose-pine-highlight-med text-white p-3 rounded-lg max-w-xs">
+		<div id={ id } data-on-load="@get('/chat'), {openWhenHidden:true}"  class="flex justify-self-end my-10 bg-rose-pine-highlight-med text-white p-3 rounded-lg max-w-xs">
 			{ content }
 		</div>
 	} else if role == "assistant" {
-		<div id={ id } class="flex last:min-h-[calc(100vh-12.5rem)] max-w-3xl flex-col prose prose-sm text-[1rem] prose-pine justify-self-start my-10 text-rose-pine-text rounded-lg">
+		<div id={ id } data-on-load={datastar.PutSSE("/chat")} data-scroll-into-view__smooth__vend class="flex max-w-3xl flex-col prose prose-sm text-[1rem] prose-pine justify-self-start my-10 text-rose-pine-text rounded-lg">
 			@templ.Raw(content)
 		</div>
 	}

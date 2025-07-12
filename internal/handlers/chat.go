@@ -35,7 +35,7 @@ func PromptHandler(c *gin.Context) {
 	}
 
 	sse := datastar.NewSSE(c.Writer, c.Request)
-	fragment := components.ChatMessage(string(message.Role), message.Content, uuid.New().String())
+	fragment := components.ChatMessage(string(message.Role), message.Content, fmt.Sprintf("user-%s", uuid.New().String()))
 	sse.MergeFragmentTempl(fragment, datastar.WithMergeMode("append"), datastar.WithSelector("#chat-messages"))
 }
 

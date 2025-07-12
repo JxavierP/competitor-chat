@@ -1,4 +1,4 @@
-/*! tailwindcss v4.1.8 | MIT License | https://tailwindcss.com */
+/*! tailwindcss v4.1.11 | MIT License | https://tailwindcss.com */
 @layer properties;
 @layer theme, base, components, utilities;
 @layer theme {
@@ -941,6 +941,9 @@
   .p-4 {
     padding: calc(var(--spacing) * 4);
   }
+  .p-6 {
+    padding: calc(var(--spacing) * 6);
+  }
   .px-4 {
     padding-inline: calc(var(--spacing) * 4);
   }
@@ -999,11 +1002,6 @@
   .outline-none {
     --tw-outline-style: none;
     outline-style: none;
-  }
-  .last\:min-h-\[calc\(100vh-12\.5rem\)\] {
-    &:last-child {
-      min-height: calc(100vh - 12.5rem);
-    }
   }
 }
 ::-webkit-scrollbar {
