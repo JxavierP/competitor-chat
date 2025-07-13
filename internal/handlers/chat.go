@@ -81,10 +81,10 @@ func ResponseHandler(gemini *genai.Client) gin.HandlerFunc {
 			genai.NewContentFromText(prompt, "user"),
 		}
 
-		int32ThinkingBudget := int32(0) // Set to 0 to disable thinking
+		int32ThinkingBudget := int32(0)
 		var fullResponse string
 
-		for response, err := range gemini.Models.GenerateContentStream(
+		for response, err := range gemini.Models.GenerateContentStream(	
 			c.Request.Context(),
 			"gemini-2.5-flash",
 			contents,

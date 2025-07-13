@@ -1,14 +1,16 @@
 package components
 
-import "github.com/starfederation/datastar/sdk/go"
-
 templ ChatMessage(role string, content string, id string) {
 	if role == "user" {
-		<div id={ id } data-on-load="@get('/chat'), {openWhenHidden:true}"  class="flex justify-self-end my-10 bg-rose-pine-highlight-med text-white p-3 rounded-lg max-w-xs">
+		<div id={ id } data-on-load="@get('/chat'), {openWhenHidden:true}" class="flex justify-self-end my-10 bg-rose-pine-highlight-med text-white p-3 rounded-lg max-w-xs">
 			{ content }
 		</div>
 	} else if role == "assistant" {
-		<div id={ id } data-on-load={datastar.PutSSE("/chat")} data-scroll-into-view__smooth__vend class="flex max-w-3xl flex-col prose prose-sm text-[1rem] prose-pine justify-self-start my-10 text-rose-pine-text rounded-lg">
+		<div
+			id={ id }
+			data-on-load__once__delay.1s="ctx.el.scrollIntoView()"
+			class="last:min-h-[calc(100dvh-12.5rem)] flex max-w-3xl flex-col prose prose-sm text-[1rem] prose-pine justify-self-start my-10 text-rose-pine-text rounded-lg"
+		>
 			@templ.Raw(content)
 		</div>
 	}
@@ -16,8 +18,7 @@ templ ChatMessage(role string, content string, id string) {
 
 templ ChatArea() {
 	<div class="flex-1 w-full overflow-y-auto">
-		<div id="chat-messages" class="max-w-3xl mx-auto w-full text-[#f6f6f6]">
-    </div>
+		<div id="chat-messages" class="max-w-3xl mx-auto w-full text-[#f6f6f6]"></div>
 		<div id="chat-end" class="h-px"></div>
 	</div>
 }
