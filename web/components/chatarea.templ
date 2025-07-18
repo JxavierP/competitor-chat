@@ -2,13 +2,13 @@ package components
 
 templ ChatMessage(role string, content string, id string) {
 	if role == "user" {
-		<div id={ id } data-on-load="@get('/chat'), {openWhenHidden:true}" class="flex justify-self-end my-10 bg-rose-pine-highlight-med text-white p-3 rounded-lg max-w-xs">
+		<div id={ id } data-ref-lol data-on-load={ "@get('/chat?id=" + id + "'), {openWhenHidden:true}" } class="flex justify-self-end my-10 bg-rose-pine-highlight-med text-white p-3 rounded-lg max-w-xs">
 			{ content }
 		</div>
 	} else if role == "assistant" {
 		<div
 			id={ id }
-			data-on-load__once__delay.1s="ctx.el.scrollIntoView()"
+			data-on-load={ "console.log($lol)" }
 			class="last:min-h-[calc(100dvh-12.5rem)] flex max-w-3xl flex-col prose prose-sm text-[1rem] prose-pine justify-self-start my-10 text-rose-pine-text rounded-lg"
 		>
 			@templ.Raw(content)
@@ -16,6 +16,7 @@ templ ChatMessage(role string, content string, id string) {
 	}
 }
 
+// data-on-load__once__delay.1s="ctx.el.scrollIntoView()"
 templ ChatArea() {
 	<div class="flex-1 w-full overflow-y-auto">
 		<div id="chat-messages" class="max-w-3xl mx-auto w-full text-[#f6f6f6]"></div>

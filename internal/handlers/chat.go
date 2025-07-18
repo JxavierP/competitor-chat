@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strings"
 
 	"bytes"
 
@@ -35,22 +36,22 @@ func PromptHandler(c *gin.Context) {
 	}
 
 	sse := datastar.NewSSE(c.Writer, c.Request)
-	fragment := components.ChatMessage(string(message.Role), message.Content, fmt.Sprintf("user-%s", uuid.New().String()))
+	fragment := components.ChatMessage(string(message.Role), message.Content, fmt.Sprintf("prompt-%s", uuid.New().String()))
 	sse.MergeFragmentTempl(fragment, datastar.WithMergeMode("append"), datastar.WithSelector("#chat-messages"))
 }
 
 func ResponseHandler(gemini *genai.Client) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// Extract JSON string from the 'datastar' query param
-		jsonPayload := c.Query("datastar")
-		if jsonPayload == "" {
+		jsonPromptPayload := c.Query("datastar")
+		if jsonPromptPayload == "" {
 			c.JSON(http.StatusBadRequest, gin.H{"error": "Missing datastar payload"})
 			return
 		}
 
 		// Parse it into a map
-		var data map[string]string
-		if err := json.Unmarshal([]byte(jsonPayload), &data); err != nil {
+		var data map[string]interface{}
+		if err := json.Unmarshal([]byte(jsonPromptPayload), &data); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid datastar JSON"})
 			return
 		}
@@ -66,7 +67,8 @@ func ResponseHandler(gemini *genai.Client) gin.HandlerFunc {
 			return
 		}
 		sse := datastar.NewSSE(c.Writer, c.Request)
-		id := uuid.New().String()
+		jsonIDPayload := c.Query("id")
+		jsonIDPayload = strings.TrimPrefix(jsonIDPayload, "prompt-")
 
 		flush, ok := c.Writer.(http.Flusher)
 		if !ok {
@@ -74,17 +76,17 @@ func ResponseHandler(gemini *genai.Client) gin.HandlerFunc {
 			return
 		}
 
-		sse.MergeFragmentTempl(components.ChatMessage("assistant", "Thinking...", fmt.Sprintf("assistant-%s", id)), datastar.WithMergeMode("append"), datastar.WithSelector("#chat-messages"))
+		sse.MergeFragmentTempl(components.ChatMessage("assistant", "Thinking...", fmt.Sprintf("reponse-%s", jsonIDPayload)), datastar.WithMergeMode("append"), datastar.WithSelector("#chat-messages"))
 		flush.Flush()
 
 		contents := []*genai.Content{
-			genai.NewContentFromText(prompt, "user"),
+			genai.NewContentFromText(prompt.(string), "user"),
 		}
 
 		int32ThinkingBudget := int32(0)
 		var fullResponse string
 
-		for response, err := range gemini.Models.GenerateContentStream(	
+		for response, err := range gemini.Models.GenerateContentStream(
 			c.Request.Context(),
 			"gemini-2.5-flash",
 			contents,
@@ -115,9 +117,9 @@ func ResponseHandler(gemini *genai.Client) gin.HandlerFunc {
 			htmlOutput := buf.String()
 
 			sse.MergeFragmentTempl(
-				components.ChatMessage("assistant", htmlOutput, fmt.Sprintf("assistant-%s", id)),
+				components.ChatMessage("assistant", htmlOutput, fmt.Sprintf("reponse-%s", jsonIDPayload)),
 				datastar.WithMergeMode("morph"),
-				datastar.WithSelector(fmt.Sprintf("#assistant-%s", id)),
+				datastar.WithSelector(fmt.Sprintf("#reponse-%s", jsonIDPayload)),
 			)
 			flush.Flush()
 		}
